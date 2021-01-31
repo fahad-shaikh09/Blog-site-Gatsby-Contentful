@@ -1,5 +1,5 @@
 const dotenv = require(`dotenv`)
-if(process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
   dotenv.config()
 }
 
@@ -50,11 +50,12 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          `gatsby-transformer-sharp`,
+          `gatsby-plugin-sharp`,
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -84,6 +85,7 @@ module.exports = {
         spaceId: `yxoql20jr89k`,
         accessToken: process.env.ACCESS_TOKEN
       }
-    }
+    },
+    `@contentful/gatsby-transformer-contentful-richtext`,
   ],
 }
