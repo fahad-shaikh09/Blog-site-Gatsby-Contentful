@@ -36,7 +36,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       `There was an error loading your blog posts`,
       result.errors
     )
-    return
+    return result
   }
 
   const posts = result.data.allContentfulPost.edges
@@ -46,17 +46,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // `context` is available in the template as a prop and as a variable in GraphQL
 
   if (posts.length > 0) {
+    console.log("posts[0].node:", posts[0].node)
     posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+      const previous = index === 0 ? null : posts[index - 1].node
+      const next = index === posts.length - 1 ? null : posts[index + 1].node
 
       createPage({
         path: post.node.slug,
         component: blogPost,
         context: {
           slug: post.node.slug,
-          previousPostId,
-          nextPostId,
+          previous,
+          next,
         },
       })
     })

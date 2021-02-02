@@ -44,7 +44,7 @@ const BlogIndex = ({ data, location }) => {
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.title || post.node.slug
-          console.log("post var:", post)
+          // console.log("post var:", post)
           return (
             <Post >
               <PostImage>

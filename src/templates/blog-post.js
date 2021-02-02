@@ -6,12 +6,12 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const BlogPostTemplate = ({ data, location }) => {
+const BlogPostTemplate = ({ data, location, pageContext }) => {
   const post = data.contentfulPost
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const { previous, next } = data
+  const { previous, next } = pageContext
 
-  console.log("post var:", post)
+  console.log("data prop:", data)
   console.log("previous var:", previous)
   console.log("next var:", next)
 
@@ -49,7 +49,7 @@ const BlogPostTemplate = ({ data, location }) => {
             padding: 0,
           }}
         >
-          <li>
+          <li >
             {previous && (
               <Link to={previous.slug} rel="prev">
                 ← {previous.title}
