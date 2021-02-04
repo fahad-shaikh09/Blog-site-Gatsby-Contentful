@@ -46,7 +46,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // `context` is available in the template as a prop and as a variable in GraphQL
 
   if (posts.length > 0) {
-    console.log("posts[0].node:", posts[0].node)
+    // console.log("posts[0].node:", posts[0].node)
     posts.forEach((post, index) => {
       const previous = index === 0 ? null : posts[index - 1].node
       const next = index === posts.length - 1 ? null : posts[index + 1].node

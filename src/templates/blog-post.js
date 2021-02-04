@@ -2,6 +2,8 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image";
 
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -19,7 +21,7 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
     <Layout location={location} title={siteTitle}>
       <SEO
         title={post.title}
-        description={post.description}
+        description={documentToReactComponents(post.description)}
       />
       <Img fluid={post.image.fluid} />
       <article
