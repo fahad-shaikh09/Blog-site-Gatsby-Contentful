@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image";
 
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+// import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -13,15 +13,15 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = pageContext
 
-  console.log("data prop:", data)
-  console.log("previous var:", previous)
-  console.log("next var:", next)
+  // console.log("data prop:", data)
+  // console.log("previous var:", previous)
+  // console.log("next var:", next)
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
         title={post.title}
-        description={documentToReactComponents(post.description)}
+        description={post.description}
       />
       <Img fluid={post.image.fluid} />
       <article
@@ -53,14 +53,14 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
         >
           <li >
             {previous && (
-              <Link to={previous.slug} rel="prev">
+              <Link to={`/${previous.slug}`} rel="prev">
                 ← {previous.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.slug} rel="next">
+              <Link to={`/${next.slug}`} rel="next">
                 {next.title} →
               </Link>
             )}
