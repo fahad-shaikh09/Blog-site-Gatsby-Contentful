@@ -6,6 +6,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Define a template for blog post
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
 
+  //Fetching data from Contentful in var result
   const result = await graphql(
     `
       {
@@ -16,7 +17,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
              slug
              createdAt
              description {
-              raw
+              json
                     }
              author
              image {
@@ -39,11 +40,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return result
   }
 
+  // posts is an array of posts fetched from Contentful
   const posts = result.data.allContentfulPost.edges
 
-  // Create blog posts pages
-  // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
-  // `context` is available in the template as a prop and as a variable in GraphQL
 
   if (posts.length > 0) {
     // console.log("posts[0].node:", posts[0].node)
